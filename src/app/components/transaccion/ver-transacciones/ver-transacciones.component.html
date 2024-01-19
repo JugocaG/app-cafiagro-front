@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h2 class="mb-3">Ver Transacciones</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID Transaccion</th>
+        <th>Tipo Cafe</th>
+        <th>ID Comprador</th>
+        <th>Nombre Comprador</th>
+        <th>ID Vendedor</th>
+        <th>Cantidad Kg</th>
+        <th>Valor Kg</th>
+        <th>Debe Dinero</th>
+        <th>Valor Prestamo</th>
+        <th>Numero Tulas</th>
+        <th>Total Factura</th>
+        <th>Fecha</th>
+        <!-- Agrega más columnas según tus datos -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dato of datos">
+        <td>{{ dato.idTransaccion }}</td>
+        <td>{{ dato.tipoCafeEnum }}</td>
+        <td>{{ dato.idComprador }}</td>
+        <td>{{ dato.nombreComprador }}</td>
+        <td>{{ dato.idVendendor }}</td>
+        <td>{{ dato.cantidadKg }}</td>
+        <td>{{ dato.valorKg }}</td>
+        <td>{{ dato.debeDinero }}</td>
+        <td>{{ dato.valorPrestamo }}</td>
+        <td>{{ dato.numeroTulas }}</td>
+        <td>{{ dato.totalFactura }}</td>
+        <td>{{ dato.fechaTransaccion }}</td>
+        <!-- Ajusta las propiedades según la estructura de tus datos -->
+      </tr>
+    </tbody>
+  </table>
+</div>

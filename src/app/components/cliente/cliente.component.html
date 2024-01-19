@@ -1,0 +1,169 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="mb-3">Ver Clientes</h2>
+    <button
+      class="btn btn-primary btn-xs mx-1"
+      style="margin: 10px"
+      routerLink="/clientes/crear-cliente"
+    >
+      Crear cliente
+    </button>
+  </div>
+
+  <div>
+    <div class="d-flex flex-row">
+      <input
+        style="margin: 5px"
+        type="text"
+        class="form-control"
+        id="cedulafiltro"
+        placeholder="Cedula"
+        [(ngModel)]="filtercedula"
+      />
+      <input
+        style="margin: 5px"
+        type="text"
+        class="form-control"
+        id="nombrefiltro"
+        placeholder="Nombre"
+        [(ngModel)]="filternombre"
+      />
+      <input
+        style="margin: 5px"
+        type="text"
+        class="form-control"
+        id="telefonofiltro"
+        placeholder="Telefono"
+        [(ngModel)]="filtertelefono"
+      />
+
+      <input
+        style="margin: 5px"
+        type="text"
+        class="form-control"
+        id="direccionfiltro"
+        placeholder="Direccion"
+        [(ngModel)]="filterdireccion"
+      />
+
+      <input
+        style="margin: 5px"
+        type="text"
+        class="form-control"
+        id="municipiofiltro"
+        placeholder="Municipio"
+        [(ngModel)]="filtermunicipio"
+      />
+    </div>
+
+    <table style="column-span: 7" class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Cedula</th>
+          <th>Nombre</th>
+          <th>Telefono</th>
+          <th>Direccion</th>
+          <th>Municipio</th>
+          <th style="width: 250px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let dato of applyFilters(); let i = index">
+          <tr *ngIf="filaEnEdicion !== i; else formRow">
+            <td>{{ dato.id }}</td>
+            <td *ngIf="filaEnEdicion !== i">{{ dato.cedula }}</td>
+            <td *ngIf="filaEnEdicion !== i">{{ dato.nombre }}</td>
+            <td *ngIf="filaEnEdicion !== i">{{ dato.telefono }}</td>
+            <td *ngIf="filaEnEdicion !== i">{{ dato.direccion }}</td>
+            <td *ngIf="filaEnEdicion !== i">{{ dato.municipio }}</td>
+            <td class="text-center" style="width: 80px">
+              <button
+                class="btn btn-primary btn-xs mx-1"
+                (click)="editarFila(i)"
+              >
+                Editar
+              </button>
+              <button
+                class="btn btn-danger btn-xs mx-1"
+                (click)="eliminarCliente(dato.id)"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+          <ng-template #formRow>
+            <tr>
+              <td>{{ datoEditado.id }}</td>
+              <td>
+                <input
+                  [(ngModel)]="datoEditado.cedula"
+                  name="cedula"
+                  class="form-control"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="datoEditado.nombre"
+                  name="nombre"
+                  class="form-control"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="datoEditado.telefono"
+                  name="telefono"
+                  class="form-control"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="datoEditado.direccion"
+                  name="direccion"
+                  class="form-control"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="datoEditado.municipio"
+                  name="municipio"
+                  class="form-control"
+                  required
+                />
+              </td>
+              <td>
+                <button
+                  type="submit"
+                  class="btn btn-success btn-xs mx-1"
+                  (click)="
+                    guardarEdicion(
+                      datoEditado.id,
+                      datoEditado.cedula,
+                      datoEditado.nombre,
+                      datoEditado.telefono,
+                      datoEditado.direccion,
+                      datoEditado.municipio
+                    )
+                  "
+                >
+                  Guardar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-xs mx-1"
+                  (click)="cancelarEdicion()"
+                >
+                  Cancelar
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
