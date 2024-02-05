@@ -6,12 +6,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { VerTransaccionesComponent } from './components/transaccion/ver-transacciones/ver-transacciones.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { CrearClienteComponent } from './components/cliente/crear-cliente/crear-cliente.component';
+import { RealizarTransaccionComponent } from './components/transaccion/realizar-transaccion/realizar-transaccion.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'ver-transaccion', component: VerTransaccionesComponent},
+  {path: 'realizar-transaccion', component: RealizarTransaccionComponent},
   {path: 'clientes', component: ClienteComponent},
   {path: 'clientes/crear-cliente', component: CrearClienteComponent}
 ];

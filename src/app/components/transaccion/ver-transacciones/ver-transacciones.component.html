@@ -1,7 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Logo</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+      <!-- Nueva clase añadida -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/ver-transaccion">Ver Transacciones</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/realizar-transaccion"
+          >Realizar Transaccion</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes">Clientes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes/crear-cliente"
+          >Crear Cliente</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signup">Registrarse</a>
+      </li>
+      <li class="nav-item logout" routerLinkActive="active">
+        <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div class="container mt-5">
   <h2 class="mb-3">Ver Transacciones</h2>
+  <div class="d-flex flex-row">
+    <input
+      style="margin: 5px"
+      type="text"
+      class="form-control"
+      id="cedulafiltro"
+      placeholder="ID Comprador"
+      [(ngModel)]="filteridComprador"
+    />
+    <input
+      style="margin: 5px"
+      type="text"
+      class="form-control"
+      id="nombrefiltro"
+      placeholder="Nombre Comprador"
+      [(ngModel)]="filternombreComprador"
+    />
+    <input
+      style="margin: 5px"
+      type="text"
+      class="form-control"
+      id="telefonofiltro"
+      placeholder="Fecha Transaccion"
+      [(ngModel)]="filterfechaTransaccion"
+    />
+  </div>
   <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
+    <thead class="thead-dark text-center align-middle">
       <tr>
         <th>ID Transaccion</th>
         <th>Tipo Cafe</th>
@@ -10,7 +81,6 @@
         <th>ID Vendedor</th>
         <th>Cantidad Kg</th>
         <th>Valor Kg</th>
-        <th>Debe Dinero</th>
         <th>Valor Prestamo</th>
         <th>Numero Tulas</th>
         <th>Total Factura</th>
@@ -19,7 +89,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dato of datos">
+      <tr *ngFor="let dato of applyFilters()">
         <td>{{ dato.idTransaccion }}</td>
         <td>{{ dato.tipoCafeEnum }}</td>
         <td>{{ dato.idComprador }}</td>
@@ -27,10 +97,9 @@
         <td>{{ dato.idVendendor }}</td>
         <td>{{ dato.cantidadKg }}</td>
         <td>{{ dato.valorKg }}</td>
-        <td>{{ dato.debeDinero }}</td>
         <td>{{ dato.valorPrestamo }}</td>
         <td>{{ dato.numeroTulas }}</td>
-        <td>{{ dato.totalFactura }}</td>
+        <td>{{ dato.totalFactura | currency : "" }}</td>
         <td>{{ dato.fechaTransaccion }}</td>
         <!-- Ajusta las propiedades según la estructura de tus datos -->
       </tr>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { ClienteService } from 'src/app/service/cliente/cliente.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,10 +16,13 @@ export class SignupComponent {
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit() {
+
+    this.service.verificarToken()
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -41,8 +45,17 @@ export class SignupComponent {
     console.log(this.signupForm.value);
     this.service.signup(this.signupForm.value).subscribe((response) => {
       console.log(response);
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/dashboard');
     })
+  }
+
+  logout(): void {
+    this.service.logout().subscribe(() => {
+      // Puedes realizar acciones adicionales después de cerrar sesión si es necesario.
+      console.log('Sesión cerrada exitosamente');
+      window.location.href = '/';
+
+    });
   }
 
 }

@@ -1,1 +1,66 @@
-<p>dashboard works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Logo</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+      <!-- Nueva clase añadida -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/ver-transaccion">Ver Transacciones</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/realizar-transaccion"
+          >Realizar Transaccion</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes">Clientes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes/crear-cliente"
+          >Crear Cliente</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signup">Registrarse</a>
+      </li>
+      <li class="nav-item logout" routerLinkActive="active">
+        <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="ng-autocomplete">
+  <ng-autocomplete
+    [data]="data"
+    [searchKeyword]="keyword"
+    placeholder="Select country"
+    (selected)="selectEvent($event)"
+    (inputChanged)="onChangeSearch($event)"
+    (inputFocused)="onFocused($event)"
+    [itemTemplate]="itemTemplate"
+    [notFoundTemplate]="notFoundTemplate"
+  >
+  </ng-autocomplete>
+
+  <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.nombre"></a>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+</div>

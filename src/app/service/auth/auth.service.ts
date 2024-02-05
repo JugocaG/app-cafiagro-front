@@ -18,7 +18,9 @@ export class AuthService {
   ) { }
 
   signup(signupRequest: any): Observable<any> {
-    return this.http.post(BASE_URL + "sign-up", signupRequest)
+    return this.http.post(BASE_URL + "api/v1/sign-up", signupRequest, {
+      headers: this.createAuthorizationHeader()
+    })
   }
 
   login(loginRequest: any): Observable<any> {

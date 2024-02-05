@@ -12,6 +12,8 @@ import { TransaccionComponent } from './components/transaccion/transaccion.compo
 import { VerTransaccionesComponent } from './components/transaccion/ver-transacciones/ver-transacciones.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { CrearClienteComponent } from './components/cliente/crear-cliente/crear-cliente.component';
+import { RealizarTransaccionComponent } from './components/transaccion/realizar-transaccion/realizar-transaccion.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { CrearClienteComponent } from './components/cliente/crear-cliente/crear-
     VerTransaccionesComponent,
     ClienteComponent,
     CrearClienteComponent,
+    RealizarTransaccionComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { CrearClienteComponent } from './components/cliente/crear-cliente/crear-
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    AutocompleteLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,15 +17,10 @@ export class TransaccionServiceService {
     });
   }
 
-  // realizarTransaccion(crearTransaccionRequest: any): Observable<any>{
-  //   return this.http.post(BASE_URL + 'api/transaccion/enviar', crearTransaccionRequest, {
-  //     headers: this.service.createAuthorizationHeader()
-  //   });
-  // }
+  realizarTransaccion(crearTransaccionRequest: any): Observable<any>{
+    return this.http.post(BASE_URL + 'api/v1/transaccion/realizar-transaccion', crearTransaccionRequest, {
+      headers: this.service.createAuthorizationHeader()
+    });
+  }
 
-  // realizarDeposito(realizarDepositoRequest: any): Observable<any>{
-  //   return this.http.post(BASE_URL + 'api/transaccion/deposito', realizarDepositoRequest, {
-  //     headers: this.service.createAuthorizationHeader()
-  //   });
-  // }
 }

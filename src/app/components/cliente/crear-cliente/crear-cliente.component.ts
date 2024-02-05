@@ -42,5 +42,14 @@ export class CrearClienteComponent {
     })
 
   }
+  
+  logout(): void {
+    this.service.logout().subscribe(() => {
+      // Puedes realizar acciones adicionales después de cerrar sesión si es necesario.
+      console.log('Sesión cerrada exitosamente');
+      window.location.href = '/';
+
+    });
+  }
 
 }

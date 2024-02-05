@@ -1,3 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Logo</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+      <!-- Nueva clase añadida -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/ver-transaccion">Ver Transacciones</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/realizar-transaccion"
+          >Realizar Transaccion</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes">Clientes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes/crear-cliente"
+          >Crear Cliente</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signup">Registrarse</a>
+      </li>
+      <li class="nav-item logout" routerLinkActive="active">
+        <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div
   class="d-flex align-items-center justify-content-center"
   style="height: 20vh"
@@ -7,7 +52,7 @@
 
 <div
   class="d-flex align-items-center justify-content-center"
-  style="height: 60vh"
+  style="height: 50%"
 >
   <div
     class="card"
@@ -35,6 +80,8 @@
           formControlName="cedula"
           class="form-control"
         />
+      </div>
+      <div class="form-group text-center">
         <input
           type="nombre"
           name="nombre"
@@ -43,6 +90,8 @@
           formControlName="nombre"
           class="form-control"
         />
+      </div>
+      <div class="form-group text-center">
         <input
           type="telefono"
           name="telefono"
@@ -51,6 +100,8 @@
           formControlName="telefono"
           class="form-control"
         />
+      </div>
+      <div class="form-group text-center">
         <input
           type="municipio"
           name="municipio"
@@ -59,6 +110,8 @@
           formControlName="municipio"
           class="form-control"
         />
+      </div>
+      <div class="form-group text-center">
         <input
           type="direccion"
           name="direccion"

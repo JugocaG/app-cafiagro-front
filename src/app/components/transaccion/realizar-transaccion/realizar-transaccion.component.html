@@ -1,0 +1,197 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Logo</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+      <!-- Nueva clase añadida -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/ver-transaccion">Ver Transacciones</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/realizar-transaccion"
+          >Realizar Transaccion</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes">Clientes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/clientes/crear-cliente"
+          >Crear Cliente</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signup">Registrarse</a>
+      </li>
+      <li class="nav-item logout" routerLinkActive="active">
+        <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div style="height: 100%; margin: 50px">
+  <div
+    class="d-flex align-items-center justify-content-center"
+    style="height: 30%; margin-bottom: 30px"
+  >
+    <h1>Crear Transaccion</h1>
+  </div>
+
+  <div
+    class="d-flex align-items-center justify-content-center"
+    style="height: 70%"
+  >
+    <div
+      class="card"
+      style="width: 600px; padding: 20px; background-color: #f8f9fa"
+    >
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Primer formulario -->
+          <form
+            [formGroup]="crearTransaccionForm"
+            style="gap: 15px; display: flex; flex-direction: column"
+          >
+            <div class="form-group text-center">
+              <input
+                type="idComprador"
+                name="idComprador"
+                id="idComprador"
+                placeholder="ID Comprador"
+                formControlName="idComprador"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <select
+                  id="opcionesTipoCafe"
+                  (change)="onTipoCafeChange($event)"
+                  formControlName="tipoCafeEnum"
+                  class="form-select"
+                >
+                  <option
+                    *ngFor="let opcion of opcionTipoCafe"
+                    [value]="opcion.valor"
+                  >
+                    {{ opcion.label }}
+                  </option>
+                </select>
+                <button class="btn btn-outline-secondary" type="button">
+                  {{ tipoCafeSeleccionado.value || "Tipo de Cafe" }}
+                </button>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="nombreComprador"
+                name="nombreComprador"
+                id="nombreComprador"
+                placeholder="Nombre Comprador"
+                formControlName="nombreComprador"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="idVendendor"
+                name="idVendendor"
+                id="idVendendor"
+                placeholder="ID Vendendor"
+                formControlName="idVendendor"
+                class="form-control"
+              />
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+          <!-- Segundo formulario -->
+          <form
+            [formGroup]="crearTransaccionForm"
+            style="gap: 15px; display: flex; flex-direction: column"
+          >
+            <div class="form-group text-center">
+              <input
+                type="cantidadKg"
+                name="cantidadKg"
+                id="cantidadKg"
+                placeholder="Cantidad Kg"
+                formControlName="cantidadKg"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="valorKg"
+                name="valorKg"
+                id="valorKg"
+                placeholder="Valor Kg"
+                formControlName="valorKg"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="valorPrestamo"
+                name="valorPrestamo"
+                id="valorPrestamo"
+                placeholder="Valor Prestamo"
+                formControlName="valorPrestamo"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="numeroTulas"
+                name="numeroTulas"
+                id="numeroTulas"
+                placeholder="Numero Tulas"
+                formControlName="numeroTulas"
+                class="form-control"
+              />
+            </div>
+          </form>
+        </div>
+
+        <!-- Valor Total a la izquierda del botón -->
+        <div class="col-md-12 d-flex justify-content-between mt-3">
+          <div>
+            <label for="valorTotal">Valor Total:</label>
+            <div>
+              {{
+                crearTransaccionForm.get("cantidadKg").value *
+                  crearTransaccionForm.get("valorKg").value | number : "1.2-2"
+              }}
+            </div>
+          </div>
+          <!-- Botón "Crear transacción" a la derecha -->
+          <div class="text-right">
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="realizarTransaccion()"
+              [disabled]="crearTransaccionForm.invalid"
+            >
+              Crear transaccion
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
